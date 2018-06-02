@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!--1. <merge>作为被引用布局A的根标签-->
+    <!--2. 当其他布局通过<include>标签引用布局A时，布局A中的<merge>标签内容（根节点）会被去掉，-->
+    <!--在<include>里存放的是布局A中的<merge>标签内容（根节点）的子标签（即子节点），以此减少布局文件的层次-->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/merge_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="textview1"
+            android:textColor="@color/colorAccent"
+            app:layout_editor_absoluteX="0dp"
+            app:layout_editor_absoluteY="39dp" />
+
+        <include layout="@layout/merge" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_editor_absoluteX="0dp"
+        app:layout_editor_absoluteY="70dp">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="textview1"
+            android:textColor="@color/colorAccent" />
+
+        <ViewStub
+            android:id="@+id/view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/view_stub" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.constraint.ConstraintLayout>
